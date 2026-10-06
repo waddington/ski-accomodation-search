@@ -1,0 +1,23 @@
+# Pilot: Les Coches / Montchavin
+- 20:59 Started; CSV initialised from HEADER.csv
+- 20:59 Icebreaker: homepage lists 7 Les Coches catered chalets + Lisiere du Bois (La Roche) + apartments; fetching pages
+- 21:00 Icebreaker: booking site (mychaletbooking, season 2026-27) is static HTML - week prices readable for all 9 units
+- 21:01 Fixed: two Icebreaker log lines had gone to the Brevieres log via a shared /tmp helper; moved here. Helpers now in private job dir
+- 21:02 Issues log created (pilot-les-coches.issues.csv)
+- 21:03 Icebreaker: 9 catered units written (Castor, Renard, Vieille Grange, Mont Rose, Mont Rosset, Jardin Alpin 1+2, Belle Vue, Lisiere du Bois[La Roche]); exact 20-Mar prices: Renard £12.5k, Lisiere £13.3k
+- 21:04 Icebreaker Apartments: 3 self-catered units written (Arolles 14, Ciel Etoile 8, Petit Refuge 6); gallery images needed browse.mjs (lazy-loaded). Icebreaker done: 12/12 written
+- 21:04 Alpine365: 5 catered chalets (4 Montchavin, 1 Les Coches); fetching pages + prices
+- 21:06 Alpine365: 5/5 written (Bluebird, Chocolat, Grizzli, Husky, Pisteside); prices pp via AJAX table; Sun changeover, 21-28 Mar all BOOKED
+- 21:07 Ice and Fire: 2/2 written (Edelweiss - 21-28 Mar avail £995pp, Flocon - booked); main site 403 to curl, used browse.mjs; prices from mychaletbooking
+- 21:08 SkiAffinity: 1/1 written (Chalet Jessica, 16pax, 21-28 Mar avail £949pp; month tabs needed Playwright script)
+- 21:13 Ski La Source: 2/2 written (Mathilde Les Coches 14, Versoye Montchavin 12; self-catered w/ optional catering; Smoobu widget via Playwright - March weeks booked)
+- 21:14 Peak Retreats: Les Coches page lists only Les Chalets de Wengen (self-catered apartment residence, sleeps 1-8, pool) - not a chalet, no row written; nothing in Montchavin
+- 21:15 allChalets: search for Les Coches (20) + Montchavin (19) listings; ~14 new chalets beyond operator sites, plus apartments (skipped). Fetching detail pages
+- 21:21 allChalets: 11 non-Club-Alpine new listings written (Chamois-stale, Les Coches V, Alouette apt, 3 Le Boulier apts, Chalet Jaune, Chalet de la Vanoise, La Portette, Lollilavie Santel+Tsanteleina)
+- 21:21 Club Alpine (found via allChalets): 8 Montchavin rows written (6 chalets + 2 combo bookings); all show 20/21 Mar 2027 available, £7.7k-£8.7k whole chalet
+- 21:23 ChaletFinder: La Plagne list = 18 props (JS app; JSON API readable); 13 already known, 1 new (Lollilavie Chalet Montorlin), 4 outside area (Belle Plagne/1800)
+- 21:25 Chalets Direct: 29 Les Coches/Montchavin/Montorlin listings, all already known (adds listed_on only)
+- 21:26 Sno: Montchavin-Les Coches chalet search = no matches; nothing new
+- 21:28 Ski Line: La Plagne = 88 properties via API, none in Les Coches/Montchavin; nothing new. All sources done - now updating listed_on and final checks
+- 21:28 listed_on updated (allChalets, ChaletFinder, Chalets Direct) for already-known chalets; Alpine365 sauna set to unknown
+- 21:29 DONE: 42 rows (35 chalets/combos + 7 apartments), 41 with images (5 each), 19 with exact-week (20/21 Mar) prices, 14 shown available. sites.csv 11 rows, issues.csv 9 rows

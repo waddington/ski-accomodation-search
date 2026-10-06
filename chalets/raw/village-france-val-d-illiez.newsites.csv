@@ -1,0 +1,2 @@
+name,url,category,area,notes
+Région Dents du Midi accommodation (openbooking.ch),https://www.regiondentsdumidi.ch/fr/reservation/hebergements/appartements-chalets-85/,official,"Champéry, Val-d Illiez, Les Crosets, Champoussin, Morgins (Portes du Soleil CH)","JSON API api.openbooking.ch, header api-key 4BA615F77D1B41C7A5E2CFAEFC7D77C1; POST /whitelabel/list?limit=200 {lang,places:[rddm-1873-1|-2|-3, rddm-1874-1, rddm-1875-1]}; GET /accommodations/<id>?lang=en; GET /availabilities/<id> (free/arrival YYMMDD)"

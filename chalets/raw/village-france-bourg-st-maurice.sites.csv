@@ -1,0 +1,3 @@
+collector,site,search_url,listings_found,new_chalets,already_known,access,notes
+village-france-bourg-st-maurice,"Les Arcs Réservation (lesarcs-reservation.com, iResa)","https://www.lesarcs-reservation.com/chalets-aux-arcs-reserver-son-sejour (+ location-de-vacances-bourg-saint-maurice, location-appartements-et-studios-aux-arcs, hotels-aux-arcs-reserver-son-sejour)",18,18,0,partial: static pages show first 10-24 items; station filter is JS (/ajax/search/update) - not driven,"chalets page complete (10 total, 3 Darentasia units in Montrigon); apartments/hotels only first page"
+village-france-bourg-st-maurice,allChalets,https://www.allchalets.com/search/location:bourg-st-maurice,0,0,0,ok,no Bourg location (only les-arcs)

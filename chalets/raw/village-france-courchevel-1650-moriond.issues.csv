@@ -1,0 +1,2 @@
+collector,site,url,chalet_id,problem,missing,tried,date
+village-france-courchevel-1650-moriond,Les 3 Vallées Réservation (les3vallees.py),https://reservation.les3vallees.com/en/product-30467-chasseforet-chalet-7-rooms-12-persons,,scraper-mismatch,village written as plain Courchevel (fixed to Courchevel 1650 (Moriond)); Chasseforet hot_tub private-outdoor but text only says relaxation area with jacuzzi (fixed to location not stated). Hellebore 223 OK,browse.mjs spot-check,2026-10-06

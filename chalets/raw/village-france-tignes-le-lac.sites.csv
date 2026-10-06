@@ -1,0 +1,6 @@
+collector,site,search_url,listings_found,new_chalets,already_known,access,notes
+village-france-tignes-le-lac,Tignes Réservation (ingenie.py),"booking.tignes.net quarters IALMES, IROSSET, IBECROUGE, min sleeps 8",129,129,0,ok (scraper),30 free 20 Mar; spot-check found catered mislabel (fixed)
+village-france-tignes-le-lac,allChalets,https://www.allchalets.com/search/location:tignes-le-lac,13,12,1,ok (scraper),location:tignes has 152 more listings across all Tignes villages - not run
+village-france-tignes-le-lac,SeeTignes,https://www.seetignes.com/chalets/,23,11,1,ok,"Brevieres entries skipped (sibling village, already collected)"
+village-france-tignes-le-lac,Build My Ski Trip,https://www.buildmyskitrip.com/Hotel/tignes-catered-chalet-artayma,5,4,1,ok (browse.mjs; calendar on page),"Artayma (Lavachet) free 20 Mar GBP21,999"
+village-france-tignes-le-lac,Ski Vertigo,https://skivertigo.co.uk/tignes/ski-chalets/,7,0,0,ok,"not written: pending sites-lane task site-ski-vertigo (package operator). Operates Aigle Royal, Alaska, Camille, Iceberg, Isabelle, Kitz, La Perle"

@@ -1,0 +1,7 @@
+collector,site,search_url,listings_found,new_chalets,already_known,access,notes
+village-france-montriond,AliKats,https://alikats.eu/chalet/<slug>/,17,5,0,ok static,"5 of 17 in Montriond (by address): Bizet, Debussy, Ferme a Jules (catered, all booked 20 Mar), Riviere, Soleil d Or (self-catered, free 21 Mar)"
+village-france-montriond,Host Savoie,https://hostsavoie.checkfront.com/reserve/inventory/?start_date=20270320&end_date=20270327,7,2,0,ok (Checkfront JSON),Le Vionnet + Les Noisettes in Montriond; rest Morzine/Prodains
+village-france-montriond,"Morzine Réservation (resa-morzine.com, Ingenie)",https://www.resa-morzine.com/search?mid=3&action=result&sans_dates=1&type_prestataire=G&affiner=1&ordre_type=alphabetique&page=N,348,2,0,ok,"Morzine OT; only 2 Montriond units (K-Terra 4, Chalet X); no quarter criterion seen"
+village-france-montriond,Alptitude,https://alptitude.com/properties/,27,2,0,ok static,"Flocon de Neige, Mazot Greffiers in Montriond; rest Morzine"
+village-france-montriond,See Morzine,https://www.seemorzine.com/chalets/,1,0,1,ok,only Flocon de Neige tagged Montriond on page 1
+village-france-montriond,allChalets,https://www.allchalets.com/search/location:montriond,0,0,0,ok,no Montriond location; Morzine (242) URLs all say morzine - Montriond ones only identifiable from detail pages (Morzine task)

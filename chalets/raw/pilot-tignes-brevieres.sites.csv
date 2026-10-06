@@ -1,0 +1,17 @@
+collector,site,search_url,listings_found,new_chalets,already_known,access,notes
+pilot-tignes-brevieres,White Horizon Chalets,https://www.whitehorizonchalets.co.uk,6,6,0,ok,Static price lists on each chalet page incl. 20-27 Mar; old Le Vallon page (2022/23) still live but not in nav
+pilot-tignes-brevieres,Chalet Chardons,https://www.chaletchardons.com/winter-2026-27-pricing-and-availability/,11,11,0,browser-needed,Prices in chaletmanager JS widget; JSONP endpoint fetchable directly with curl
+pilot-tignes-brevieres,Alpine Answers,https://www.alpineanswers.co.uk/ski-chalets-tignes-les-brevieres/france,15,2,13,browser-needed,Listing JS-rendered; detail pages have full weekly price tables incl. 20 Mar
+pilot-tignes-brevieres,allChalets,https://www.allchalets.com/tignes-les-brevieres,30,16,14,ok,Detail pages server-rendered (curl ok); many owner listings have no rates; Les Boisses page 5 listings
+pilot-tignes-brevieres,Skiworld,https://www.skiworld.co.uk/ski-holidays/france/tignes,1,1,0,browser-needed,Only Sachette in Brévières; month tabs need navigate script
+pilot-tignes-brevieres,Tignes Réservation,https://booking.tignes.net/chalets-individuels-tignes.html,23,18,5,browser-needed,Weekly prices in JS calendar per chalet; 0 chalets in Les Boisses
+pilot-tignes-brevieres,Tignes Spirit,https://www.tignes-spirit.com/flats/catered_chalets,11,2,7,ok,Agent listing other operators; prices undated/stale; also legacy 'Chalet Chardons' hotel (56) and whole 'Chalet Hattiers' (21) not added (superseded by current Chardons products)
+pilot-tignes-brevieres,See Tignes,https://www.seetignes.com/chalets/,12,1,11,browser-needed,Full list only after JS render (12 of 21 in raw HTML); listing pages are thin (enquiry links to operators)
+pilot-tignes-brevieres,Alpine Elements,https://www.alpineelements.co.uk/ski-holidays/france/tignes,1,1,0,browser-needed,Only Hotel Tetras Lodge in Brévières; chalets are Le Lac/Lavachet; prices behind booking widget
+pilot-tignes-brevieres,Tignes.co.uk,https://www.tignes.co.uk/catered.htm,0,0,0,no-results,Catered/self-catered listings are Le Lac/Val Claret/Lavachet only (lets.ski powered)
+pilot-tignes-brevieres,Ski Beat,https://www.skibeat.co.uk,0,0,0,not-covered,No Tignes chalets on site
+pilot-tignes-brevieres,VIP SKI,https://www.vip-chalets.com/chalets,0,0,0,not-covered,Val d'Isère only
+pilot-tignes-brevieres,ChaletFinder,https://www.chaletfinder.co.uk/search?location=Tignes,7,0,7,browser-needed,"Village-level search (Les Brévières/Les Boisses) returns 0; 'Tignes' search returns 7, all already known (6 White Horizon + Chalet des Boisses)"
+pilot-tignes-brevieres,Sno,https://www.sno.co.uk/ski-chalets/tignes-chalets/,11,1,10,browser-needed,No village filter; checked each Tignes chalet page for location; +Chalet Raoul (Les Boisses). Detail pages server-rendered with weekly prices incl. flights
+pilot-tignes-brevieres,Ski Line,https://www.skiline.co.uk/ski-holidays/france/tignes,2,1,1,browser-needed,"Tignes page shows ~20 properties (no village filter); +Hotel Les Brevieres (half-board hotel, £912pp 20 Mar); Chalet Raoul also here. Sachette listed per search result but not on Tignes page"
+pilot-tignes-brevieres,Heidi,https://www.heidi.com/ski/france/tignes,3,1,2,blocked,"Curl gets 429; Tignes listing renders in browser but detail pages show no content. Brévières: Chalet Whistler (known), Chalet Auberge Les Mélèzes (~See Tignes Les Melezes), Hôtel Club MMV Les Brévières (new)"

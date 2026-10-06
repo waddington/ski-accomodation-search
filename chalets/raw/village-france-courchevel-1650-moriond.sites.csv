@@ -1,0 +1,3 @@
+collector,site,search_url,listings_found,new_chalets,already_known,access,notes
+village-france-courchevel-1650-moriond,Les 3 Vallées Réservation (les3vallees.py),reservation.les3vallees.com Station=Courchevel PAX>=8 village~1650,13,13,0,ok (scraper),"116 Courchevel units 8+, 13 in 1650; 10 free 20 Mar"
+village-france-courchevel-1650-moriond,allChalets,https://www.allchalets.com/search/location:courchevel-1650,18,17,1,ok (scraper),most catered listings have unmaintained calendars

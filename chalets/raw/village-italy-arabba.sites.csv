@@ -1,0 +1,6 @@
+collector,site,search_url,listings_found,new_chalets,already_known,access,notes
+village-italy-arabba,allChalets,https://www.allchalets.com/search/location:arabba,0,0,0,ok,Arabba location exists but returns 0 holiday rentals
+village-italy-arabba,Alpine Answers,https://www.alpineanswers.co.uk/ski-chalets-arabba/italy ; /ski-hotels-arabba/italy,3,3,0,ok,"1 chalet (Cesa del Louf, full 26/27 week table, 20 Mar GBP 38,938 bookable) + 2 half-board hotels without prices"
+village-italy-arabba,Chalet Owners,https://www.chaletowners.com/chalets/arabba/,2,1,1,ok,"2 chalets: Casa tra cime (actually Pieve di Livinallongo, 9 km; 20 Mar EUR 15,400 free) and Cesa del Louf (EUR 44,000 for 10 guests, free); static week tables"
+village-italy-arabba,Luxury Chalet Book,https://www.luxurychaletbook.com/italy/arabba,1,0,1,browser-needed,"JS-rendered list; only Cesa del Louf (from EUR 26,000)"
+village-italy-arabba,"Arabba Fodom Turismo (arabba.it, official)",https://www.arabba.it/en/accomodations-arabba-dolomites/25-0.html,79,76,3,ok,"Zeppelin-built portal; full list of 79 properties (hotels, garni, apartments, rifugi) in static HTML, detail pages static (treatment/wellness/own website). From-prices on cards have no stated basis. Dated availability search did not filter via POST (needs browser) - 20 Mar availability left for pass 2. Max 6 adults in search form."

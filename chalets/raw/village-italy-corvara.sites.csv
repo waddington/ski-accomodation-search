@@ -1,0 +1,4 @@
+collector,site,search_url,listings_found,new_chalets,already_known,access,notes
+village-italy-corvara,allChalets,https://www.allchalets.com/search/location:alta-badia (location:corvara 404),0,0,0,ok,"alta-badia location exists, 0 holiday rentals; no Corvara in Italy list"
+village-italy-corvara,Alpine Answers,https://www.alpineanswers.co.uk/ski-chalets-corvara/italy ; /ski-hotels-corvara/italy,6,6,0,ok,"no chalets; 6 hotels, static HTML, no prices (enquiry)"
+village-italy-corvara,Luxury Chalet Book,https://www.luxurychaletbook.com/italy/alta-badia,3,3,0,ok,"static HTML detail pages incl. weekly price table; none in Corvara itself (Badia, La Villa, Colfosco)"

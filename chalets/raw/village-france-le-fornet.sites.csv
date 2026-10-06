@@ -1,0 +1,4 @@
+collector,site,search_url,listings_found,new_chalets,already_known,access,notes
+village-france-le-fornet,allChalets,https://www.allchalets.com/search/location:val-d-isere (9 pages scanned for Fornet/Laisinant),16,9,7,ok,allchalets.py --ids then ingest.py --from-jsonl (village fixed to Le Fornet; 2 Laisinant as Val d Isère)
+village-france-le-fornet,Simply Val d'Isère,https://www.simplyvaldisere.com/accom/le-fornet-laisinant/*,12,7,5,ok,"rate tables with 20 Mar week; operators via table code (BMST, YSE, HIP, SF)"
+village-france-le-fornet,booking.valdisere.com / YSE,,0,0,0,skipped,official site Ingenie needs ingenie.py config (logged in la-daille task); YSE 429 earlier

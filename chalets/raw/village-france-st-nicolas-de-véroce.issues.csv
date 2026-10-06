@@ -1,0 +1,5 @@
+collector,site,url,chalet_id,problem,missing,tried,date
+village-france-st-nicolas-de-véroce,allChalets,https://www.allchalets.com/holiday-rentals/33598-chalet-in-st-gervais-france,allchalets-33598,no-price-published,price for 20 Mar week; availability,webfetch,2026-10-06
+village-france-st-nicolas-de-véroce,Hôtel Armancette (MSEM),https://services.msem.tech/api/lodging/accomodation/hotel-armancette/contiguous-offers,almae-armancette-chalet-aster,other,per-chalet availability 20-27 Mar (hotel offers not per room via API); Aster/Carline/Silène,webfetch,2026-10-06
+village-france-st-nicolas-de-véroce,Almae Collection,https://almae-collection.com/residences/ancolie/,almae-chalet-ancolie,no-price-published,"price, availability",webfetch,2026-10-06
+village-france-st-nicolas-de-véroce,Locations Meublées St-Nicolas,https://locations-saint-nicolas.com/locations_liste.php,,no-price-published,"exact 20 Mar week price for most of 61 listings (only year-round range); hot tub ambiguous where ""Jacuzzi / Sauna"" box ticked (Joly Chalet, Foyer Célestin, Le Dome)",webfetch,2026-10-06

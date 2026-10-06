@@ -1,0 +1,4 @@
+collector,site,search_url,listings_found,new_chalets,already_known,access,notes
+village-france-tignes-1800,Tignes Réservation (booking.tignes.net),ingenie.py tignes --quarter I1800,48,48,0,ok,"residence apts (CGH Kalinda, Lodge des Neiges, Altaviva) + chalets Merveilles/Monts (13p, pool/sauna/steam); hot tub picto fixed to shared/unknown"
+village-france-tignes-1800,allChalets,https://www.allchalets.com/search/location:tignes (no tignes-1800 location; 8 pages scanned),7,5,2,ok,residence apartments only
+village-france-tignes-1800,Tignes Spirit / Ski Vertigo / seetignes,sitemaps grep 1800|boisses,0,0,0,ok,no Tignes 1800 accommodation pages (Ski Vertigo/seetignes sitemap 404)

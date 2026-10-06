@@ -1,0 +1,3 @@
+collector,site,url,chalet_id,problem,missing,tried,date
+village-france-la-chapelle-d-abondance,Leman Mountains Explore,https://www.leman-mountains-explore.com/decouvrir/nos-villages/chapelle-d-abondance/ou-dormir-a-chapelle-abondance/,,no-price-published,20 Mar price/availability for ~80 private meublés (contact owner); photos,webfetch,2026-10-06
+village-france-la-chapelle-d-abondance,DuckDuckGo,https://html.duckduckgo.com/html/,,captcha,search for UK/local catered operators in La Chapelle d Abondance,search,2026-10-06

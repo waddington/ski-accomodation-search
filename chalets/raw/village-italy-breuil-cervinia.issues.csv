@@ -1,0 +1,4 @@
+collector,site,url,chalet_id,problem,missing,tried,date
+village-italy-breuil-cervinia,Crystal Ski,https://www.crystalski.co.uk/ski-resorts/italy-ski-holidays/cervinia/hotel-edelweiss/,,blocked-403,all hotel details and prices for 12 Cervinia hotels (names only from resort page),navigate-script,2026-10-05
+village-italy-breuil-cervinia,Cervinia official booking (Vertical Booking DMS),https://reservations-dms.verticalbooking.com/risultati_portale.htm?aff_id=63&aff_code=website55,,captcha,official tourist-office accommodation search with 20-27 Mar 2027 prices/availability,browse.mjs,2026-10-05
+village-italy-breuil-cervinia,Casa Camos (cerviniacasavacanze.com),https://www.cerviniacasavacanze.com/appartamento-2.php,cerviniacasavacanze-casa-camos,blocked-403,"per-apartment details, prices, images (IIS HTTP 999 bot block to curl/urllib)",webfetch;browse.mjs,2026-10-05

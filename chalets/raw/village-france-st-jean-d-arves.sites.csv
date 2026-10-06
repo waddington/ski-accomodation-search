@@ -1,0 +1,3 @@
+collector,site,search_url,listings_found,new_chalets,already_known,access,notes
+village-france-st-jean-d-arves,allChalets,https://www.allchalets.com/search/location:saint-jean-d-arves,11,11,0,ok,scraper; 7 of 11 are really in St-Sorlin-d-Arves per description (village corrected in corrections.csv)
+village-france-st-jean-d-arves,Saint Jean d Arves tourist office (sja73.com),https://www.sja73.com/search?mid=1&action=result&sans_dates=1&type_prestataire=G&affiner=1&ordre_type=alphabetique,59,59,0,ok,Ingenie platform mid=1 type G (58 meublés) + hebergements-avec-pension (1 group lodge); season tariffs on detail pages; no dated search (booking via reservation.sja73.com Open System)

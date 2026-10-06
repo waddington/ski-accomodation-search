@@ -1,0 +1,4 @@
+collector,site,url,chalet_id,problem,missing,tried,date
+village-italy-arabba,Arabba Fodom Turismo (arabba.it),https://www.arabba.it/en/accomodations-arabba-dolomites/25-0.html,,js-widget,20 Mar 2027 availability/price and capacity for 76 properties (cards give unexplained from-prices only),webfetch;search,2026-10-06
+village-italy-arabba,Alpine Answers,https://www.alpineanswers.co.uk/ski-hotels-arabba/italy,,no-price-published,prices for Sporthotel Arabba and Hotel Evaldo (enquire only),webfetch,2026-10-06
+village-italy-arabba,allChalets,https://www.allchalets.com/search/location:arabba,,other,0 listings for Arabba,browse.mjs,2026-10-06

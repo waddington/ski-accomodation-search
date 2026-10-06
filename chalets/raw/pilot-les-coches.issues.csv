@@ -1,0 +1,10 @@
+collector,site,url,chalet_id,problem,missing,tried,date
+pilot-les-coches,Alpine365,https://alpine365.co.uk/prices/,,js-widget,none in the end - price table is JS (ninja-tables) but its AJAX JSON endpoint is readable; Sunday changeover so no exact Sat 20 Mar week,browse.mjs,2026-10-05
+pilot-les-coches,Ice and Fire,https://www.ice-fire.co.uk/,,blocked-403,none - curl/WebFetch get 403; headless browser works,webfetch;browse.mjs,2026-10-05
+pilot-les-coches,SkiAffinity,https://www.skiaffinity.com/chalet-jessica-paradiski,skiaffinity-chalet-jessica,js-widget,none in the end (Feb-Apr prices behind ASP.NET postback month selector); meal plan not published,webfetch;navigate-script,2026-10-05
+pilot-les-coches,Ski La Source,https://www.ski-lasource.com/book,,js-widget,"booked weeks show no price, so season price range is thin; optional catering price not published",webfetch;browse.mjs;navigate-script,2026-10-05
+pilot-les-coches,WebSearch,,,other,"WebSearch session budget exhausted (200/200, shared with other collectors) - all discovery done by direct site navigation",search,2026-10-05
+pilot-les-coches,Peak Retreats,https://www.peakretreats.co.uk/winter/ski-resorts/paradiski/les-coches,,other,"no chalets in Les Coches/Montchavin (only an apartment residence, Les Chalets de Wengen); not written as a row",webfetch,2026-10-05
+pilot-les-coches,ChaletFinder,https://www.chaletfinder.co.uk/property/35365,lollilavie-chalet-montorlin,other,photos (none on listing); meaning of availability code,browse.mjs;navigate-script,2026-10-05
+pilot-les-coches,Sno,https://www.sno.co.uk/ski-chalets/montchavin-les-coches-chalets/,,other,no Les Coches/Montchavin chalets listed (No matches found),webfetch;browse.mjs,2026-10-05
+pilot-les-coches,Ski Line,https://www.skiline.co.uk/ski-holidays/france/la-plagne/chalet-la-vieille-maison,,other,village of Wens Chalets La Vieille Maison not stated (could be any La Plagne village); not added,webfetch;navigate-script,2026-10-05

@@ -1,0 +1,18 @@
+# Pilot Tignes Les Brévières progress
+- 20:59 Started; CSV initialised from HEADER.csv
+- 21:01 White Horizon: found 6 chalets (all Les Brévières), 6/6 written; Ibex £665pp & Neus £653pp available 20-27 Mar
+- 21:03 Chalet Chardons: 11 properties found; prices pulled from chaletmanager JSONP calendars (JS widget bypassed); reading detail pages
+- 21:04 Chalet Chardons: 11/11 written (exact-week 20 Mar prices for 7; Hattiers Apt 1 €5600 for 8, Boubou €14000, Indah €14260)
+- 21:07 Alpine Answers Brévières page (JS-rendered via browse.mjs): 15 listings, 2 new — Inghams La Bergerie (£1269pp incl flights 20 Mar) & Penthouse Cap Crystal Lodge; both written
+- 21:09 allChalets: 30 listings in Brévières/Boisses (server-rendered; list page via browse.mjs); listed_on updated for 13 existing; ~16 new to add
+- 21:09 WebSearch budget exhausted (session-wide 200 cap) — continuing with direct URLs + browse.mjs
+- 21:11 Skiworld: Chalet Sachette written (£1529pp 20 Mar, via JS month tabs + navigate script)
+- 21:13 allChalets-only: 10 Brévières + 5 Boisses/1800 listings written (mostly quote-needed, operator not named)
+- 21:22 Tignes Réservation (booking.tignes.net): 23 Brévières individual chalets (0 in Les Boisses); 18 new written, 5 merged (Lo Soli, Aspen, Breckenridge=Les Brevieres VI, Casa San Bernardo=St Bernard, Sachette). Prices from JS calendar via browse.mjs; Black Diamond (AVP001) chalets have no prices
+- 21:22 sites.csv yield log started; moving to Tignes Spirit / Tignes.co.uk / Alpine Elements / Ski Beat / VIP SKI / See Tignes
+- 21:24 Tignes Spirit: 11 Brévières listings; +Ranjarde, +Le Vallon (legacy WH) written; listed_on updated for 7
+- 21:25 See Tignes: 12 Brévières listings, 1 new (Les Melezes, no details), listed_on updated for 11
+- 21:26 Alpine Elements: +Hotel Tetras Lodge (hotel, no price). Tignes.co.uk / Ski Beat / VIP SKI: nothing in Brévières/Boisses
+- 21:29 ChaletFinder: 7 Tignes results all known. Sno: 10 known Brévières + new Chalet Raoul (Les Boisses, sold out 21 Mar)
+- 21:33 Ski Line: +Hotel Les Brevieres (£912pp 20 Mar). Heidi: 429/blocked detail pages; +Hôtel Club MMV Les Brévières (name only); listed_on updated
+- 21:33 DONE: 60 chalets, validated against schema; report sent

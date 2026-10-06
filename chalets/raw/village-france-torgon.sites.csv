@@ -1,0 +1,3 @@
+collector,site,search_url,listings_found,new_chalets,already_known,access,notes
+village-france-torgon,"torgon.ch (Torgon Tourisme, Ingenie-style listing)",https://www.torgon.ch/appartement-chalet-torgon-sejour.html,25,25,0,ok static HTML,"22 private meublés + 2 group houses + hotel; no online booking/availability, contact form only"
+village-france-torgon,allChalets,https://www.allchalets.com/search/location:torgon,0,0,0,ok,no Torgon location

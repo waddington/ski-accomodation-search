@@ -1,0 +1,6 @@
+collector,site,url,chalet_id,problem,missing,tried,date
+village-france-alpe-d-huez,allChalets (scraper allchalets.py),https://www.allchalets.com/search/location:alpe-d-huez,,scraper-mismatch,village field left HTML-escaped (Alpe d&#39;Huez) so match.py found 0 known; also every listing filed under Alpe d Huez although 13 are in Huez 1500/Vaujany/Oz (fixed by hand from listing text),scraper --ids + ingest --from-jsonl,2026-10-06
+village-france-alpe-d-huez,Alpe d Huez official booking (msem/Valraiso),https://services.msem.tech/api/public/lodging/<merchant>/availabilities,,no-price-published,exact-week price/availability for all MAEVA-sourced units (~70): availability API returns no stays,api,2026-10-06
+village-france-alpe-d-huez,Alpenglow,https://www.alpenglow.ski/alpe-d-huez,,other,site gone - domain expired,browse.mjs,2026-10-06
+village-france-alpe-d-huez,Zenith Holidays / Altitude Holidays,https://altitudeholidays.co.uk/resorts/france/alpe-dhuez,,other,Altitude resort page lists no Alpe d Huez properties; zenithholidays.co.uk SSL error (defunct?),browse.mjs; curl,2026-10-06
+village-france-alpe-d-huez,SeeAlpedHuez,https://www.seealpedhuez.com/chalets/,,other,board label on Alpe d Huez Rentals cards says Catered but OT pages are self-catered (Cimalpes etc.) - ignored,curl,2026-10-06

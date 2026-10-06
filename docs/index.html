@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chalet Search</title>
+<style>
+:root {
+  --bg: #f6f5f1; --panel: #ffffff; --ink: #1c2126; --quiet: #5f6870; --line: #e2e0d8;
+  --accent: #2f6f8f; --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #4a3aa7; --s7: #008300; --good: #2e7d4f; --warn: #b7791f; --bad: #b23b3b; --chip: #eef2f4;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #14181b; --panel: #1d2226; --ink: #e8eaec; --quiet: #9aa3ab; --line: #2d3439;
+          --accent: #6fb0d0; --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #9085e9; --s7: #008300; --good: #5cc08a; --warn: #e0a84a; --bad: #e57373; --chip: #263036; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { padding: 20px 24px 8px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 24px; }
+h1 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+h2 { font-size: 15px; margin: 0 0 12px; }
+.sub { color: var(--quiet); font-size: 13px; }
+main { padding: 8px 24px 40px; display: grid; gap: 16px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.tile { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.tile b { display: block; font-size: 24px; font-variant-numeric: tabular-nums; }
+.tile span { color: var(--quiet); font-size: 12px; }
+.bar { height: 10px; background: var(--chip); border-radius: 5px; overflow: hidden; display: flex; }
+.bar i { display: block; height: 100%; }
+.phase { display: grid; grid-template-columns: 160px 1fr 110px; gap: 12px; align-items: center; margin: 8px 0; }
+.phase .n { text-align: right; color: var(--quiet); font-variant-numeric: tabular-nums; font-size: 13px; }
+.now { border-left: 3px solid var(--accent); padding: 6px 10px; background: var(--chip); border-radius: 0 6px 6px 0; margin-bottom: 10px; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 800px) { .cols { grid-template-columns: 1fr; } .phase { grid-template-columns: 100px 1fr 80px; } }
+ol, ul { margin: 0; padding-left: 20px; }
+li { margin: 2px 0; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+.seg button { border: 1px solid var(--line); background: var(--panel); color: var(--ink); padding: 6px 12px; cursor: pointer; font: inherit; }
+.seg button:first-child { border-radius: 6px 0 0 6px; } .seg button:last-child { border-radius: 0 6px 6px 0; }
+.seg button + button { border-left: none; }
+.seg button.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+input, select { font: inherit; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); }
+input[type=search] { min-width: 220px; flex: 1; max-width: 360px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
+.card { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--panel); cursor: pointer; display: flex; flex-direction: column; }
+.card:hover { border-color: var(--accent); }
+.card .img { aspect-ratio: 16/10; background: var(--chip); position: relative; overflow: hidden; }
+.card .img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.more { display: block; margin: 16px auto 0; padding: 8px 18px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); font: inherit; cursor: pointer; }
+.card .badge { position: absolute; top: 8px; left: 8px; padding: 2px 8px; border-radius: 10px; font-size: 12px; font-weight: 600; color: #fff; }
+.pass { background: var(--good); } .fail { background: var(--bad); }
+.card .body { padding: 10px 12px 12px; display: grid; gap: 4px; }
+.card .name { font-weight: 600; }
+.card .meta { color: var(--quiet); font-size: 12.5px; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.chip { background: var(--chip); padding: 1px 7px; border-radius: 10px; font-size: 12px; }
+.chip.yes { color: var(--good); } .chip.no { color: var(--bad); } .chip.unk { color: var(--warn); }
+.why { color: var(--bad); font-size: 12.5px; }
+.miss { color: var(--warn); font-size: 12px; }
+.price { font-variant-numeric: tabular-nums; font-weight: 600; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--quiet); font-weight: 600; position: sticky; top: 0; background: var(--panel); }
+.scroll { max-height: 420px; overflow: auto; }
+details summary { cursor: pointer; font-weight: 600; }
+dialog { border: none; border-radius: 12px; padding: 0; max-width: min(920px, 96vw); width: 100%; background: var(--panel); color: var(--ink); }
+dialog::backdrop { background: rgba(0,0,0,.5); }
+.dlg { padding: 18px 20px; }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; margin: 12px 0; }
+.thumbs img { width: 100%; border-radius: 6px; aspect-ratio: 4/3; object-fit: cover; }
+.kv { display: grid; grid-template-columns: 200px 1fr; gap: 2px 12px; font-size: 13px; }
+.kv div:nth-child(odd) { color: var(--quiet); }
+.chart { position: relative; }
+.chart svg { width: 100%; height: 260px; display: block; overflow: visible; }
+.chart .tip { position: absolute; pointer-events: none; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 6px 9px; font-size: 12.5px; box-shadow: 0 2px 8px rgba(0,0,0,.12); display: none; white-space: nowrap; }
+.legend { display: flex; gap: 16px; font-size: 12.5px; color: var(--quiet); margin-bottom: 6px; }
+.legend { flex-wrap: wrap; }
+.legend i { display: inline-block; width: 14px; height: 2px; vertical-align: middle; margin-right: 6px; }
+.filters { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px 14px; margin: 0 0 14px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; }
+.filters label { display: grid; gap: 3px; font-size: 12px; color: var(--quiet); }
+.filters select, .filters input[type=number] { width: 100%; }
+.filters .rules { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; font-size: 13px; color: var(--ink); }
+.filters .rules label { display: inline-flex; gap: 5px; align-items: center; color: var(--ink); font-size: 13px; }
+.linkbtn { border: none; background: none; color: var(--accent); cursor: pointer; font: inherit; padding: 0; }
+body[data-static="1"] .live-only { display: none; }
+.x { float: right; border: none; background: none; font-size: 22px; cursor: pointer; color: var(--quiet); }
+a { color: var(--accent); }
+.empty { color: var(--quiet); padding: 20px; text-align: center; }
+</style>
+</head>
+<body data-static="1">
+<header>
+  <h1>Chalet Search · 20–27 Mar 2027</h1>
+  <span class="sub" id="stamp">loading…</span>
+</header>
+<main>
+  <div class="tiles" id="tiles"></div>
+
+  <section class="panel live-only">
+    <h2>Search progress</h2>
+    <div id="now"></div>
+    <div id="phases"></div>
+    <div class="cols" style="margin-top:14px">
+      <div><h2>Next up</h2><ol id="next"></ol></div>
+      <div><h2>Recently finished</h2><ul id="recent"></ul></div>
+    </div>
+  </section>
+
+  <section class="panel live-only">
+    <h2>Chalets collected over time</h2>
+    <div class="legend" id="legend"></div>
+    <div class="chart" id="chart"><svg id="chartSvg" role="img" aria-label="Cumulative chalets found and chalets making the cut over time"></svg><div class="tip" id="tip"></div></div>
+    <div class="scroll" style="margin-top:10px;max-height:none"><table id="laneTable"></table></div>
+    <div class="sub" style="margin-top:6px">Per-agent lines count unique chalets each lane has written (a chalet found by two lanes counts for both); the total counts each chalet once. Snapshots every minute while the dashboard server runs. Points before tracking began come from the pilot logs and file times; "made the cut" starts with live tracking.</div>
+  </section>
+
+  <section class="panel">
+    <div class="controls">
+      <div class="seg" id="seg">
+        <button data-v="pass" class="on">Made the cut</button><button data-v="fail">Removed</button><button data-v="all">All</button>
+      </div>
+      <input type="search" id="q" placeholder="Search name, village, operator, reason…">
+      <select id="sort">
+        <option value="price">Sort: price per person</option>
+        <option value="sleeps">Sort: sleeps</option>
+        <option value="village">Sort: village</option>
+        <option value="missing">Sort: fewest unknowns</option>
+      </select>
+      <span class="sub" id="count"></span>
+      <button class="linkbtn" id="resetF">Reset filters</button>
+    </div>
+    <div class="filters" id="filters">
+      <label>Country<select data-f="country"></select></label>
+      <label>Ski area<select data-f="ski_area"></select></label>
+      <label>Village<select data-f="village"></select></label>
+      <label>Operator<select data-f="operator"></select></label>
+      <label>Max £ per person<input type="number" data-f="maxpp" min="0" step="50" placeholder="any"></label>
+      <label>Sleeps at least<input type="number" data-f="minsleeps" min="1" placeholder="any"></label>
+      <label>Sleeps at most<input type="number" data-f="maxsleeps" min="1" placeholder="any"></label>
+      <label>Hot tub<select data-f="hottub"><option value="">any</option><option value="yes">has hot tub</option><option value="private">private hot tub</option><option value="notno">not known to lack one</option></select></label>
+      <label>Property type<select data-f="ptype"></select></label>
+      <label>Board<select data-f="board"><option value="">any</option><option value="catered">catered</option><option value="self">self-catered</option></select></label>
+      <label>Free 20–27 Mar<select data-f="avail"><option value="">any</option><option value="yes">confirmed free</option><option value="notno">not known to be booked</option></select></label>
+      <label>Price known<select data-f="priced"><option value="">any</option><option value="yes">has a price</option><option value="exact">exact-week price</option></select></label>
+      <label>Photos<select data-f="photos"><option value="">any</option><option value="yes">has photos</option></select></label>
+      <div class="rules"><b>Ignore rule:</b><span class="sub">also show chalets removed <i>only</i> by the ticked rules (in "Made the cut" view)</span>
+        <label><input type="checkbox" data-rule="not available"> booked</label>
+        <label><input type="checkbox" data-rule="not catered"> not catered</label>
+        <label><input type="checkbox" data-rule="sleeps"> wrong size</label>
+        <label><input type="checkbox" data-rule="over"> over budget</label>
+      </div>
+    </div>
+    <div class="grid" id="cards"></div>
+    <div id="moreWrap"></div>
+  </section>
+
+  <section class="panel">
+    <details><summary id="issuesSum">Access issues</summary><div class="scroll" style="margin-top:10px"><table id="issues"></table></div></details>
+  </section>
+  <section class="panel">
+    <details><summary>Site yield (which sources found new chalets)</summary><div class="scroll" style="margin-top:10px"><table id="yield"></table></div></details>
+  </section>
+</main>
+
+<dialog id="dlg"><div class="dlg" id="dlgBody"></div></dialog>
+
+<script>
+const REFRESH_MS = 30000;
+const STATIC = document.body.dataset.static === "1";  // set by tools/build_static.py
+let chalets = [], view = "pass";
+
+function parseCSV(text) {
+  const rows = []; let row = [], field = "", q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else q = false; }
+      else field += c;
+    } else if (c === '"') q = true;
+    else if (c === ",") { row.push(field); field = ""; }
+    else if (c === "\n" || c === "\r") {
+      if (c === "\r" && text[i + 1] === "\n") i++;
+      row.push(field); field = ""; if (row.length > 1 || row[0] !== "") rows.push(row); row = [];
+    } else field += c;
+  }
+  if (field !== "" || row.length) { row.push(field); rows.push(row); }
+  const [h, ...body] = rows;
+  return h ? body.map(r => Object.fromEntries(h.map((k, j) => [k, r[j] ?? ""]))) : [];
+}
+async function load(path) {
+  try { const r = await fetch(path + "?t=" + Date.now()); return r.ok ? parseCSV(await r.text()) : []; }
+  catch { return []; }
+}
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const yn = v => v === "yes" ? '<span class="chip yes">✓' : v === "no" ? '<span class="chip no">✗' : '<span class="chip unk">?';
+const img = (c, n = 1) => +c.image_count >= n ? `chalets/images/${encodeURIComponent(c.chalet_id)}/${String(n).padStart(2, "0")}.jpg` : "";
+function priceText(c) {
+  if (c.price_pp_gbp_accom_est) return `~£${(+c.price_pp_gbp_accom_est).toLocaleString()}pp` + (c.price_pp_gbp_accom_est !== c.price_pp_gbp_est ? ` (£${(+c.price_pp_gbp_est).toLocaleString()} incl. travel)` : "");
+  if (c.price_range_low) return `${c.price_currency} ${(+c.price_range_low).toLocaleString()}+ (${c.price_basis || "?"})`;
+  return "price unknown";
+}
+
+function renderProgress(queue, lastBuild) {
+  const active = queue.filter(t => t.status !== "deferred");
+  const done = active.filter(t => ["done", "failed", "skipped"].includes(t.status)).length;
+  const phases = {};
+  for (const t of queue) {
+    const k = `${t.phase} · ${t.type}`; phases[k] ??= { total: 0, done: 0, failed: 0, running: 0, deferred: 0 };
+    const p = phases[k]; p.total++;
+    if (t.status === "done" || t.status === "skipped") p.done++; else if (t.status === "partial") p.running++; else if (t.status === "failed") p.failed++;
+    else if (t.status === "in_progress") p.running++; else if (t.status === "deferred") p.deferred++;
+  }
+  const pct = (a, b) => b ? (100 * a / b).toFixed(1) : 0;
+  document.getElementById("phases").innerHTML =
+    `<div class="phase"><b>Overall</b><div class="bar"><i style="width:${pct(done, active.length)}%;background:var(--accent)"></i></div><div class="n">${done} / ${active.length} · ${pct(done, active.length)}%</div></div>` +
+    Object.entries(phases).map(([k, p]) => `<div class="phase"><span>${esc(k)}</span>
+      <div class="bar"><i style="width:${pct(p.done, p.total)}%;background:var(--good)"></i><i style="width:${pct(p.failed, p.total)}%;background:var(--bad)"></i><i style="width:${pct(p.running, p.total)}%;background:var(--warn)"></i></div>
+      <div class="n">${p.deferred ? "deferred" : `${p.done + p.failed} / ${p.total}`}</div></div>`).join("");
+  const now = queue.filter(t => t.status === "in_progress");
+  document.getElementById("now").innerHTML = now.length
+    ? now.map(t => `<div class="now"><b>Now:</b> ${esc(t.type)} — ${esc(t.target)} · <b>${t.live_rows ?? 0} chalets written so far</b> <span class="sub">${esc(t.detail)} · started ${esc(t.started)}</span></div>`).join("")
+    : `<div class="now"><b>Now:</b> idle</div>`;
+  document.getElementById("next").innerHTML = queue.filter(t => t.status === "pending").slice(0, 6)
+    .map(t => `<li>${esc(t.type)} — ${esc(t.target)} <span class="sub">${esc(t.detail).slice(0, 60)}</span></li>`).join("") || "<li class='sub'>nothing pending</li>";
+  document.getElementById("recent").innerHTML = queue.filter(t => t.finished).sort((a, b) => b.finished.localeCompare(a.finished)).slice(0, 8)
+    .map(t => `<li><span style="color:var(--${t.status === "failed" ? "bad" : "good"})">${t.status === "failed" ? "✗" : "✓"}</span> ${esc(t.target)} <span class="sub">${esc(t.rows_written || 0)} rows, ${esc(t.new_chalets || 0)} new · ${esc(t.finished)}</span></li>`).join("") || "<li class='sub'>none yet</li>";
+  document.getElementById("stamp").textContent = STATIC
+    ? `Snapshot: ${lastBuild.split("\n")[0].replace("snapshot ", "") || "?"}`
+    : `Data rebuilt ${lastBuild.split("\n")[0] || "?"} · page refreshes every 30 s`;
+  if (STATIC) document.getElementById("now").style.display = "none";
+  return { done, total: active.length };
+}
+
+function renderTiles(prog, issues) {
+  const pass = chalets.filter(c => !c.removed_by).length;
+  const tiles = [
+    [chalets.length, "chalets found"], [pass, "made the cut"], [chalets.length - pass, "removed"],
+    [chalets.filter(c => !c.removed_by && c.missing_fields).length, "passing, with unknowns"],
+    [issues.length, "access issues"], [`${prog.done}/${prog.total}`, "search tasks done"],
+  ];
+  document.getElementById("tiles").innerHTML = tiles.map(([b, s]) => `<div class="tile"><b>${esc(b)}</b><span>${s}</span></div>`).join("");
+}
+
+const F = (() => { try { return JSON.parse(localStorage.getItem("chaletFilters") || "{}"); } catch { return {}; } })();
+F.rules ??= [];
+function saveF() { try { localStorage.setItem("chaletFilters", JSON.stringify(F)); } catch {} }
+function ignoredOnly(c) {
+  if (!c.removed_by || !F.rules.length) return false;
+  return c.removed_by.split("; ").every(r => F.rules.some(k => r.includes(k)));
+}
+function fillSelects() {
+  { const sel = document.querySelector('[data-f="ptype"]');
+    const counts = {}; for (const c of chalets) counts[c.type || "chalet"] = (counts[c.type || "chalet"] || 0) + 1;
+    sel.innerHTML = `<option value="">all types</option>` + Object.keys(counts).sort().map(t => `<option value="${esc(t)}"${F.ptype === t ? " selected" : ""}>${esc(t)} (${counts[t]})</option>`).join("") +
+      `<option value="chalet+hotel"${F.ptype === "chalet+hotel" ? " selected" : ""}>chalets + hotels (no apartments)</option>`; }
+  for (const key of ["country", "ski_area", "village", "operator"]) {
+    const sel = document.querySelector(`[data-f="${key}"]`);
+    const scope = chalets.filter(c => key === "country" || !F.country || c.country === F.country)
+                         .filter(c => key !== "village" || !F.ski_area || c.ski_area === F.ski_area);
+    const vals = [...new Set(scope.map(c => c[key]).filter(Boolean))].sort();
+    const cur = F[key] || "";
+    sel.innerHTML = `<option value="">all (${vals.length})</option>` + vals.map(v => `<option${v === cur ? " selected" : ""}>${esc(v)}</option>`).join("");
+  }
+  for (const el of document.querySelectorAll("#filters input[type=number], #filters select:not([data-f=country]):not([data-f=ski_area]):not([data-f=village]):not([data-f=operator]):not([data-f=ptype])")) el.value = F[el.dataset.f] ?? "";
+  for (const cb of document.querySelectorAll("[data-rule]")) cb.checked = F.rules.includes(cb.dataset.rule);
+}
+function passesF(c) {
+  const n = v => v === "" ? null : +v;
+  if (F.country && c.country !== F.country) return false;
+  if (F.ski_area && c.ski_area !== F.ski_area) return false;
+  if (F.village && c.village !== F.village) return false;
+  if (F.operator && c.operator !== F.operator) return false;
+  if (F.ptype === "chalet+hotel" ? !["chalet", "hotel", "chalet-hotel", "combined-booking"].includes(c.type || "chalet") : F.ptype && (c.type || "chalet") !== F.ptype) return false;
+  if (F.maxpp && (n(c.price_pp_gbp_accom_est) ?? Infinity) > +F.maxpp) return false;
+  if (F.minsleeps && (n(c.sleeps_max) ?? 0) < +F.minsleeps) return false;
+  if (F.maxsleeps && (n(c.sleeps_min) ?? n(c.sleeps_max) ?? Infinity) > +F.maxsleeps) return false;
+  if (F.hottub === "yes" && c.has_hot_tub !== "yes") return false;
+  if (F.hottub === "private" && c.has_private_hot_tub !== "yes") return false;
+  if (F.hottub === "notno" && c.has_hot_tub === "no") return false;
+  if (F.board === "catered" && c.is_catered !== "yes") return false;
+  if (F.board === "self" && c.is_catered !== "no") return false;
+  if (F.avail === "yes" && c.available_20_27_mar !== "yes") return false;
+  if (F.avail === "notno" && c.available_20_27_mar === "no") return false;
+  if (F.priced === "yes" && !c.price_pp_gbp_est && !c.price_range_low) return false;
+  if (F.priced === "exact" && c.has_exact_week_price !== "yes") return false;
+  if (F.photos === "yes" && !(+c.image_count > 0)) return false;
+  return true;
+}
+
+// Cards render in batches so "All" (thousands of chalets) stays responsive.
+const PAGE = 60;
+let shown = PAGE, keepShown = false, currentList = [];
+function showMore() {
+  if (shown >= currentList.length) return;
+  shown += PAGE; keepShown = true; renderCards();
+}
+function moreButton() {
+  const left = currentList.length - shown;
+  return left > 0 ? `<button class="more" id="moreBtn">Show more (${left} left)</button>` : "";
+}
+
+function renderCards() {
+  const q = document.getElementById("q").value.toLowerCase();
+  const sort = document.getElementById("sort").value;
+  let list = chalets.filter(c => view === "all" || (view === "pass" ? (!c.removed_by || ignoredOnly(c)) : c.removed_by && !ignoredOnly(c)));
+  list = list.filter(passesF);
+  if (q) list = list.filter(c => [c.chalet_name, c.village, c.operator, c.removed_by, c.ski_area].join(" ").toLowerCase().includes(q));
+  const num = v => v === "" ? Infinity : +v;
+  list.sort({
+    price: (a, b) => num(a.price_pp_gbp_accom_est) - num(b.price_pp_gbp_accom_est),
+    sleeps: (a, b) => num(a.sleeps_max) - num(b.sleeps_max),
+    village: (a, b) => (a.village + a.chalet_name).localeCompare(b.village + b.chalet_name),
+    missing: (a, b) => a.missing_fields.split(";").filter(Boolean).length - b.missing_fields.split(";").filter(Boolean).length,
+  }[sort]);
+  document.getElementById("count").textContent = `${list.length} match`;
+  currentList = list;
+  if (!keepShown) shown = PAGE;
+  keepShown = false;
+  document.getElementById("cards").innerHTML = list.slice(0, shown).map(c => `
+    <div class="card" data-id="${esc(c.chalet_id)}">
+      <div class="img">${img(c) ? `<img src="${img(c)}" loading="lazy" decoding="async" alt="">` : ""}<span class="badge ${c.removed_by ? (ignoredOnly(c) ? "pass" : "fail") : "pass"}" ${ignoredOnly(c) ? 'style="background:var(--warn)"' : ""}>${c.removed_by ? (ignoredOnly(c) ? "Back in (rule ignored)" : "Removed") : "Made the cut"}</span></div>
+      <div class="body">
+        <div class="name">${esc(c.chalet_name)}</div>
+        <div class="meta">${esc(c.type || "chalet")} · ${esc(c.village)} · ${esc(c.operator || "operator unknown")}</div>
+        <div><span class="price">${esc(priceText(c))}</span> <span class="sub">· sleeps ${esc(c.sleeps_max || "?")} · ${esc(c.board || "board ?")}</span></div>
+        <div class="chips">${yn(c.has_hot_tub)} hot tub</span>${yn(c.is_catered)} catered</span>${yn(c.sleeps_8_to_10)} 8–10</span>${yn(c.available_20_27_mar === "yes" ? "yes" : c.available_20_27_mar === "no" ? "no" : "")} free 20 Mar</span></div>
+        ${c.removed_by ? `<div class="why">✗ ${esc(c.removed_by)}</div>` : ""}
+        ${c.missing_fields ? `<div class="miss">Unknown: ${esc(c.missing_fields)}</div>` : ""}
+      </div>
+    </div>`).join("") || `<div class="empty">No chalets match.</div>`;
+  document.getElementById("moreWrap").innerHTML = moreButton();
+}
+
+function openChalet(id) {
+  const c = chalets.find(x => x.chalet_id === id); if (!c) return;
+  const thumbs = [1, 2, 3, 4, 5].map(n => img(c, n)).filter(Boolean).map(s => `<img src="${s}" loading="lazy">`).join("");
+  const skip = new Set(["description"]);
+  document.getElementById("dlgBody").innerHTML = `
+    <button class="x" onclick="document.getElementById('dlg').close()">×</button>
+    <h2 style="font-size:18px">${esc(c.chalet_name)}</h2>
+    <div class="sub">${esc(c.village)}, ${esc(c.ski_area)} · ${esc(c.operator)} ${c.url ? `· <a href="${esc(c.url)}" target="_blank" rel="noopener">open listing ↗</a>` : ""}</div>
+    ${c.removed_by ? `<p class="why"><b>Removed because:</b> ${esc(c.removed_by)}</p>` : `<p style="color:var(--good)"><b>Made the cut.</b></p>`}
+    <p>${esc(c.description)}</p>
+    <div class="thumbs">${thumbs || '<div class="sub">No images.</div>'}</div>
+    <div class="kv">${Object.entries(c).filter(([k, v]) => v && !skip.has(k)).map(([k, v]) => `<div>${esc(k)}</div><div>${/^https?:/.test(v) ? `<a href="${esc(v)}" target="_blank" rel="noopener">${esc(v)}</a>` : esc(v)}</div>`).join("")}</div>`;
+  document.getElementById("dlg").showModal();
+}
+
+function table(el, rows, cols) {
+  el.innerHTML = `<tr>${cols.map(c => `<th>${esc(c)}</th>`).join("")}</tr>` +
+    rows.map(r => `<tr>${cols.map(c => `<td>${/^https?:/.test(r[c]) ? `<a href="${esc(r[c])}" target="_blank" rel="noopener">link</a>` : esc(r[c])}</td>`).join("")}</tr>`).join("");
+}
+
+const SERIES = [
+  { key: "found", label: "Total found (unique)", color: "var(--s1)", w: 2.5, label_end: true },
+  { key: "pass", label: "Made the cut", color: "var(--s2)", w: 2.5, label_end: true },
+  { key: "lane_pilot", label: "Pilot", color: "var(--s3)", w: 1.5 },
+  { key: "lane_sites", label: "Sites agent", color: "var(--s4)", w: 1.5 },
+  { key: "lane_villages", label: "Villages agent (France)", color: "var(--s5)", w: 1.5 },
+  { key: "lane_villages_abroad", label: "Villages agent (abroad)", color: "var(--s6)", w: 1.5 },
+  { key: "lane_enrich", label: "Enrichment agent", color: "var(--s7)", w: 1.5 },
+];
+function renderChart(hist) {
+  const svg = document.getElementById("chartSvg"), tip = document.getElementById("tip");
+  document.getElementById("legend").innerHTML = SERIES.map(s => `<span><i style="background:${s.color};height:${s.w > 2 ? 3 : 2}px"></i>${s.label}</span>`).join("");
+  const W = svg.clientWidth || 900, H = 260, m = { l: 44, r: 120, t: 10, b: 28 };
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const num = v => v === "" || v === undefined ? null : +v;
+  const pts = hist.map(h => ({ t: new Date(h.time.replace(" ", "T")), found: +h.chalets, pass: num(h.passing), src: h.source,
+                              ...Object.fromEntries(SERIES.slice(2).map(s => [s.key, num(h[s.key])])) }))
+                  .filter(p => !isNaN(p.t));
+  if (pts.length < 2) { svg.innerHTML = `<text x="${W / 2}" y="${H / 2}" text-anchor="middle" fill="var(--quiet)">Collecting data…</text>`; return; }
+  const t0 = pts[0].t.getTime(), t1 = Math.max(pts.at(-1).t.getTime(), t0 + 60000);
+  const yMax = Math.max(10, ...pts.map(p => p.found));
+  const mag = Math.pow(10, Math.floor(Math.log10(yMax))), step = mag * (yMax / mag > 5 ? 2 : yMax / mag > 2 ? 1 : 0.5);
+  const top = Math.ceil(yMax / step) * step;
+  const X = t => m.l + (t - t0) / (t1 - t0) * (W - m.l - m.r), Y = v => H - m.b - v / top * (H - m.t - m.b);
+  const fmt = d => d.toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+  const hm = d => d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+  let g = "";
+  for (let v = 0; v <= top; v += step) g += `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${m.l - 8}" y="${Y(v) + 4}" text-anchor="end" font-size="11.5" fill="var(--quiet)">${v}</text>`;
+  const nT = Math.min(6, Math.max(2, Math.floor((W - m.l - m.r) / 120)));
+  for (let i = 0; i <= nT; i++) { const t = t0 + (t1 - t0) * i / nT; g += `<text x="${X(t)}" y="${H - 8}" text-anchor="middle" font-size="11.5" fill="var(--quiet)">${(t1 - t0) > 864e5 ? fmt(new Date(t)) : hm(new Date(t))}</text>`; }
+  // Unknown points are skipped (the line bridges them) rather than drawn as zero.
+  const path = key => { let d = "", on = false; for (const p of pts) { if (p[key] === null || p[key] === undefined) continue; d += `${on ? "L" : "M"}${X(p.t.getTime()).toFixed(1)},${Y(p[key]).toFixed(1)}`; on = true; } return d; };
+  for (const s of [...SERIES].reverse()) g += `<path d="${path(s.key)}" fill="none" stroke="${s.color}" stroke-width="${s.w}" stroke-linejoin="round"/>`;
+  for (const s of SERIES.filter(s => s.label_end)) {
+    const lp = [...pts].reverse().find(p => p[s.key] !== null && p[s.key] !== undefined); if (!lp) continue;
+    g += `<circle cx="${X(lp.t.getTime())}" cy="${Y(lp[s.key])}" r="4" fill="${s.color}" stroke="var(--panel)" stroke-width="2"/>`;
+    g += `<text x="${X(lp.t.getTime()) + 8}" y="${Y(lp[s.key]) + 4}" font-size="12" fill="var(--ink)">${lp[s.key]} ${s.key === "found" ? "found" : "made the cut"}</text>`;
+  }
+  g += `<line id="xh" y1="${m.t}" y2="${H - m.b}" stroke="var(--quiet)" stroke-dasharray="3 3" visibility="hidden"/><rect x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="transparent" id="hit"/>`;
+  svg.innerHTML = g;
+  const hit = svg.querySelector("#hit"), xh = svg.querySelector("#xh");
+  hit.onmousemove = e => {
+    const r = svg.getBoundingClientRect(), sx = (e.clientX - r.left) * W / r.width;
+    const p = pts.reduce((a, b) => Math.abs(X(b.t.getTime()) - sx) < Math.abs(X(a.t.getTime()) - sx) ? b : a);
+    const px = X(p.t.getTime()); xh.setAttribute("x1", px); xh.setAttribute("x2", px); xh.setAttribute("visibility", "visible");
+    tip.style.display = "block"; tip.style.left = Math.min(px * r.width / W + 12, r.width - 230) + "px"; tip.style.top = "8px";
+    tip.innerHTML = `<b>${fmt(p.t)}</b><br>` + SERIES.map(s => `<span style="color:${s.color}">━</span> ${s.label}: ${p[s.key] ?? "–"}`).join("<br>") +
+      (p.src && p.src !== "live" ? `<br><span class="sub">${esc(p.src)}</span>` : "");
+  };
+  hit.onmouseleave = () => { tip.style.display = "none"; xh.setAttribute("visibility", "hidden"); };
+  const last = pts.at(-1);
+  document.getElementById("laneTable").innerHTML = `<tr>${SERIES.map(s => `<th><span style="color:${s.color}">━</span> ${s.label}</th>`).join("")}</tr><tr>${SERIES.map(s => `<td>${last[s.key] ?? "–"}</td>`).join("")}</tr>`;
+}
+
+async function liveCounts(queue) {
+  if (STATIC) return;
+  for (const t of queue.filter(t => t.status === "in_progress" || t.status === "partial")) {
+    if (!t.collector_file) continue;
+    const rows = await load(t.collector_file.replace(/^.*?(chalets\/raw\/)/, "$1"));
+    t.live_rows = rows.length;
+  }
+}
+
+async function refresh() {
+  let hist = [];
+  const [all, queue, issues, yieldRows, , lb] = await Promise.all([
+    load("chalets/chalets_all.csv"), load("chalets/search_queue.csv"), load("chalets/access_issues.csv"),
+    load("chalets/site_yield.csv"), load("dashboard/history.csv").then(h => (hist = h, h)), fetch("dashboard/last_build.txt?t=" + Date.now()).then(r => r.ok ? r.text() : "").catch(() => ""),
+  ]);
+  chalets = all;
+  keepShown = true;
+  fillSelects();
+  await liveCounts(queue);
+  const prog = renderProgress(queue, lb);
+  lastHist = hist; renderChart(hist);
+  renderTiles(prog, issues);
+  renderCards();
+  document.getElementById("issuesSum").textContent = `Access issues (${issues.length})`;
+  table(document.getElementById("issues"), [...issues].reverse(), ["collector", "site", "problem", "missing", "tried", "url"]);
+  table(document.getElementById("yield"), yieldRows, ["collector", "site", "listings_found", "new_chalets", "access", "notes"]);
+}
+
+document.getElementById("seg").addEventListener("click", e => {
+  if (e.target.dataset.v) { view = e.target.dataset.v; document.querySelectorAll("#seg button").forEach(b => b.classList.toggle("on", b === e.target)); renderCards(); }
+});
+document.getElementById("q").addEventListener("input", renderCards);
+document.getElementById("filters").addEventListener("change", e => {
+  const el = e.target;
+  if (el.dataset.rule) F.rules = [...document.querySelectorAll("[data-rule]:checked")].map(x => x.dataset.rule);
+  else if (el.dataset.f) { F[el.dataset.f] = el.value; if (el.dataset.f === "country") { F.ski_area = ""; F.village = ""; } if (el.dataset.f === "ski_area") F.village = ""; }
+  saveF(); fillSelects(); renderCards();
+});
+document.getElementById("resetF").addEventListener("click", () => { for (const k of Object.keys(F)) delete F[k]; F.rules = []; saveF(); fillSelects(); renderCards(); });
+document.getElementById("sort").addEventListener("change", renderCards);
+document.getElementById("moreWrap").addEventListener("click", e => { if (e.target.id === "moreBtn") showMore(); });
+new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) showMore(); }, { rootMargin: "600px" })
+  .observe(document.getElementById("moreWrap"));
+document.getElementById("cards").addEventListener("click", e => { const c = e.target.closest(".card"); if (c) openChalet(c.dataset.id); });
+document.getElementById("dlg").addEventListener("click", e => { if (e.target.id === "dlg") e.target.close(); });
+let lastHist = [];
+window.addEventListener("resize", () => lastHist.length && renderChart(lastHist));
+refresh(); if (!STATIC) setInterval(refresh, REFRESH_MS);
+</script>
+</body>
+</html>
