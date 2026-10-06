@@ -1,0 +1,75 @@
+chalet_id,field,value,note
+seetignes-chalet-les-melezes,listed_on,See Tignes,"Enrich 2026-10-05: Heidi listing (CHALET AUBERGE - Les Mélèzes) is a different property, an auberge in Les Boisses"
+chardons-chalet-hattiers-apartment-2,sleeps_min,,User check 2026-10-05: operator page lists 'Hattiers Apartment 2: 6 Guests' / 'Apartment 1: 8 Guests' and prices for 6 / 8 guests; collector had counted sofa beds
+chardons-chalet-hattiers-apartment-2,sleeps_max,6,User check 2026-10-05: operator page lists 'Hattiers Apartment 2: 6 Guests' / 'Apartment 1: 8 Guests' and prices for 6 / 8 guests; collector had counted sofa beds
+chardons-chalet-hattiers-apartment-1,sleeps_min,,User check 2026-10-05: operator page lists 'Hattiers Apartment 2: 6 Guests' / 'Apartment 1: 8 Guests' and prices for 6 / 8 guests; collector had counted sofa beds
+chardons-chalet-hattiers-apartment-1,sleeps_max,8,User check 2026-10-05: operator page lists 'Hattiers Apartment 2: 6 Guests' / 'Apartment 1: 8 Guests' and prices for 6 / 8 guests; collector had counted sofa beds
+sno-chalet-le-corbeau,bedrooms,6,"site-ski-line spot-check 2026-10-06: Ski Line page lists Rooms 1-3, Suite 4/5 (2 bedrooms), Suite 6; skiline.py regex took '2' from 'the two bedrooms'"
+sno-chalet-aigrette,bedrooms,6,"site-ski-line spot-check 2026-10-06: same layout as Corbeau (Rooms 1-3, Suite 4/5 two bedrooms, Suite 6); skiline.py regex gave 2"
+crystal-hameau-de-la-sapiniere-apartments,hot_tub,shared,"site-ski-line spot-check 2026-10-06: wellness area hot tub/sauna/steam, extra charge ~EUR15 per 50 min"
+crystal-hameau-de-la-sapiniere-apartments,sauna,unknown,"site-ski-line: residence wellness sauna is shared; only the 4-bed apartment has a private sauna"
+mmv-hotels-residence-club-le-coeur-des-loges,hot_tub,shared,"site-ski-line spot-check 2026-10-06: residence spa area (hammam, sauna, whirlpool) 'in option'"
+inghams-le-coeur-des-loges,hot_tub,shared,"site-ski-line 2026-10-06: same residence as mmv Le Coeur des Loges (shared spa)"
+crystal-le-coeur-des-loges,hot_tub,shared,"site-ski-line 2026-10-06: same residence as mmv Le Coeur des Loges (shared spa)"
+inghams-le-coeur-des-loges,bedrooms,,"site-ski-line: residence with several unit types; '1' came from one unit description"
+skiline-chalets-du-soleil-authentiques,bedrooms,,"site-ski-line: residence with several unit types; '1' came from one unit description"
+skiline-les-chalets-du-soleil-authentique,bedrooms,,"site-ski-line: residence with several unit types"
+skiline-residence-cgh-spa-les-chalets-du-soleil-contemporains,bedrooms,,"site-ski-line: residence with several unit types"
+ski-beat-chalet-loup-blanc,hot_tub,shared,"site-ski-line spot-check 2026-10-06: apartment-chalet in Chalet des Neiges residence; jacuzzi/pool/sauna/hammam are residence facilities"
+ski-beat-chalet-loup-blanc,bedrooms,6,"site-ski-line: Ski Line page 'Bedrooms: 6'"
+ski-beat-chalet-ibex,hot_tub,shared,"site-ski-line spot-check 2026-10-06: Chalet des Neiges residence jacuzzi (shared)"
+ski-beat-chalet-ibex,bedrooms,6,"site-ski-line: Ski Line page 'Bedrooms: 6'"
+ski-beat-chalet-renard,hot_tub,shared,"site-ski-line spot-check 2026-10-06: Chalet des Neiges residence jacuzzi (shared)"
+ski-beat-chalet-renard,bedrooms,5,"site-ski-line: Ski Line page 'Bedrooms: 5'"
+buildmyskitrip-chalet-bonhomme,hot_tub,shared,"site-ski-line spot-check 2026-10-06: Hermine residence complex shared pool, jacuzzi and sauna"
+buildmyskitrip-chalet-bonhomme,sauna,unknown,"site-ski-line: sauna is the residence's shared one"
+skiline-chalet-caribou,hot_tub,shared,"site-ski-line spot-check 2026-10-06: Chalet des Neiges residence jacuzzi (shared)"
+skiline-chalet-caribou,bedrooms,4,"site-ski-line: Ski Line page 'Bedrooms: 4'"
+sno-chalet-katie-2,hot_tub,shared,"site-ski-line 2026-10-06: Ski Line page: A spa room is shared by the two chalets (Katie 1 + 2)"
+sno-chalet-harmony,bedrooms,,"site-ski-line 2026-10-06: skiline.py bedroom regex gave 1 from room text; not stated"
+haute-montagne-domaine-de-lorme,bedrooms,10,"site-ski-line 2026-10-06: Ski Line page 'Bedrooms 10'"
+skiline-chalet-etienne-2,hot_tub,unknown,"site-ski-line 2026-10-06: page lists only 'Whirlpool bath' (a bath, not a hot tub)"
+ski-armadillo-chalet-himalaya-catered,bedrooms,7,"site-ski-line spot-check 2026-10-06: page: 7 guest bedrooms, 10-15 guests (scraper bedrooms 2); hot tub = outdoor Nordic bath"
+tignesreservation-chalet-babylon,bedrooms,4,site-ski-line 2026-10-06: Ski Line page 'Bedrooms 4' (scraper gave '')
+sno-chalet-catherine,hot_tub,shared,"site-ski-line 2026-10-06: Ski Line page 'Shared lower level featuring a sauna, steam room, hot tub' (shared with neighbouring chalet)"
+travel-ski-hotel-club-mmv-tignes-les-brevieres,hot_tub,shared,"site-ski-line 2026-10-06: hotel wellness area whirlpool baths"
+inghams-hotel-club-les-brevieres,hot_tub,shared,"site-ski-line 2026-10-06: hotel spa"
+mmv-hotels-hotel-club-les-brevieres,hot_tub,shared,"site-ski-line 2026-10-06: hotel spa"
+club-med-club-med-tignes,hot_tub,shared,"site-ski-line 2026-10-06: Club Med spa"
+sno-chalet-1850,bedrooms,8,site-ski-line 2026-10-06: Ski Line page 'Bedrooms 8' (scraper gave '')
+sno-chalet-la-face,hot_tub,shared,"site-ski-line 2026-10-06: Le Ski Cacholet chalet; Ski Line page: two shared outdoor hot tubs in the Cacholet courtyard"
+sno-chalet-la-saulire,hot_tub,shared,"site-ski-line 2026-10-06: Le Ski Cacholet chalet; Ski Line page: two shared outdoor hot tubs in the Cacholet courtyard"
+sno-chalet-roc-merlet,hot_tub,shared,"site-ski-line 2026-10-06: Le Ski Cacholet chalet; Ski Line page: two shared outdoor hot tubs in the Cacholet courtyard"
+sno-chalet-bellevarde,hot_tub,shared,"site-ski-line 2026-10-06: Le Ski Cacholet chalet; Ski Line page: two shared outdoor hot tubs in the Cacholet courtyard"
+sno-chalet-la-grande-casse,hot_tub,shared,"site-ski-line 2026-10-06: Le Ski Cacholet chalet; Ski Line page: two shared outdoor hot tubs in the Cacholet courtyard"
+travel-ski-residence-chalet-skadi,hot_tub,shared,"site-ski-line 2026-10-06: residence spa Les Bains du Montana (pool, sauna, steam, hot tubs)"
+ski-beat-chalet-cristal-1,hot_tub,yes-type-unknown,"site-ski-line spot-check 2026-10-06: Ski Line API hot-tub flag only; Ski Line page text/icons mention no hot tub (pass2: check Ski Beat site)"
+ski-beat-chalet-cristal-2,hot_tub,yes-type-unknown,"site-ski-line spot-check 2026-10-06: Ski Line API hot-tub flag only; Ski Line page text/icons mention no hot tub (pass2: check Ski Beat site)"
+ski-beat-chalet-cristal-3,hot_tub,yes-type-unknown,"site-ski-line spot-check 2026-10-06: Ski Line API hot-tub flag only; Ski Line page text/icons mention no hot tub (pass2: check Ski Beat site)"
+ski-beat-chalet-cristal-4,hot_tub,yes-type-unknown,"site-ski-line spot-check 2026-10-06: Ski Line API hot-tub flag only; Ski Line page text/icons mention no hot tub (pass2: check Ski Beat site)"
+ski-beat-chalet-cristal-5,hot_tub,yes-type-unknown,"site-ski-line spot-check 2026-10-06: Ski Line API hot-tub flag only; Ski Line page text/icons mention no hot tub (pass2: check Ski Beat site)"
+vip-loft-1-aspen-house,hot_tub,shared,"site-ski-line spot-check 2026-10-06: Aspen House ground-floor spa with tiled jacuzzi shared by the Aspen House lofts; page text says sleeps 6, header sleeps 8"
+allchalets-apartment-59779,village,St-Sorlin-d'Arves,village-france-st-jean-d-arves 2026-10-06: allChalets location is 'Saint Jean d''Arves' but listing description places it in Saint-Sorlin-d'Arves
+allchalets-apartment-59799,village,St-Sorlin-d'Arves,village-france-st-jean-d-arves 2026-10-06: allChalets location is 'Saint Jean d''Arves' but listing description places it in Saint-Sorlin-d'Arves
+allchalets-apartment-62219,village,St-Sorlin-d'Arves,village-france-st-jean-d-arves 2026-10-06: allChalets location is 'Saint Jean d''Arves' but listing description places it in Saint-Sorlin-d'Arves
+allchalets-apartment-62220,village,St-Sorlin-d'Arves,village-france-st-jean-d-arves 2026-10-06: allChalets location is 'Saint Jean d''Arves' but listing description places it in Saint-Sorlin-d'Arves
+allchalets-chalet-59689,village,St-Sorlin-d'Arves,village-france-st-jean-d-arves 2026-10-06: allChalets location is 'Saint Jean d''Arves' but listing description places it in Saint-Sorlin-d'Arves
+allchalets-chalet-magui,village,St-Sorlin-d'Arves,village-france-st-jean-d-arves 2026-10-06: allChalets location is 'Saint Jean d''Arves' but listing description places it in Saint-Sorlin-d'Arves
+allchalets-apartment-59784,village,St-Sorlin-d'Arves,village-france-st-jean-d-arves 2026-10-06: allChalets location is 'Saint Jean d''Arves' but listing description places it in Saint-Sorlin-d'Arves
+allchalets-chalet-les-buffettes,village,St-Jean-d'Arves,village-france-st-jean-d-arves 2026-10-06: allChalets 'Saint Jean d''Arves' normalised to resorts_raw spelling
+allchalets-apartment-59796,village,St-Jean-d'Arves,village-france-st-jean-d-arves 2026-10-06: allChalets 'Saint Jean d''Arves' normalised to resorts_raw spelling
+allchalets-apartment-63093,village,St-Jean-d'Arves,village-france-st-jean-d-arves 2026-10-06: allChalets 'Saint Jean d''Arves' normalised to resorts_raw spelling
+allchalets-apartment-59765,village,St-Jean-d'Arves,village-france-st-jean-d-arves 2026-10-06: allChalets 'Saint Jean d''Arves' normalised to resorts_raw spelling
+allchalets-apartment-59779,ski_area,Les Sybelles,village-france-st-jean-d-arves 2026-10-06: allChalets scraper leaves ski_area blank
+allchalets-apartment-59799,ski_area,Les Sybelles,village-france-st-jean-d-arves 2026-10-06: allChalets scraper leaves ski_area blank
+allchalets-apartment-62219,ski_area,Les Sybelles,village-france-st-jean-d-arves 2026-10-06: allChalets scraper leaves ski_area blank
+allchalets-apartment-62220,ski_area,Les Sybelles,village-france-st-jean-d-arves 2026-10-06: allChalets scraper leaves ski_area blank
+allchalets-chalet-59689,ski_area,Les Sybelles,village-france-st-jean-d-arves 2026-10-06: allChalets scraper leaves ski_area blank
+allchalets-chalet-magui,ski_area,Les Sybelles,village-france-st-jean-d-arves 2026-10-06: allChalets scraper leaves ski_area blank
+allchalets-apartment-59784,ski_area,Les Sybelles,village-france-st-jean-d-arves 2026-10-06: allChalets scraper leaves ski_area blank
+allchalets-chalet-les-buffettes,ski_area,Les Sybelles,village-france-st-jean-d-arves 2026-10-06: allChalets scraper leaves ski_area blank
+allchalets-apartment-59796,ski_area,Les Sybelles,village-france-st-jean-d-arves 2026-10-06: allChalets scraper leaves ski_area blank
+allchalets-apartment-63093,ski_area,Les Sybelles,village-france-st-jean-d-arves 2026-10-06: allChalets scraper leaves ski_area blank
+allchalets-apartment-59765,ski_area,Les Sybelles,village-france-st-jean-d-arves 2026-10-06: allChalets scraper leaves ski_area blank
+allchalets-apartment-59779,hot_tub,shared,village-france-st-jean-d-arves 2026-10-06: only jacuzzi mentioned is 'Domaine du Trappeur's sauna and jacuzzi' (residence facility)
+ski-beat-chalet-petit-mont-blanc,bedrooms,6,site-ski-line 2026-10-06: Ski Line page 'Bedrooms 6' (scraper gave '')

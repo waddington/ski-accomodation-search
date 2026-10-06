@@ -1,0 +1,2 @@
+collector,site,url,chalet_id,problem,missing,tried,date
+village-france-le-fornet,allChalets,https://www.allchalets.com/holiday-rentals/48354-chalet-in-val-d-isere-france,sno-chalet-les-sources-de-l-isere,other,scraper-mismatch: hot_tub=shared but listing says hot tub on terrace (private-outdoor); sleeps 7 from garbled header (desc says 14) - fixed in jsonl before ingest; 3 more checked OK,browse.mjs,2026-10-06

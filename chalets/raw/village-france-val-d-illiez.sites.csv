@@ -1,0 +1,4 @@
+collector,site,search_url,listings_found,new_chalets,already_known,access,notes
+village-france-val-d-illiez,Région Dents du Midi (openbooking),https://api.openbooking.ch/whitelabel/list (places rddm-1873-1),15,15,0,"ok (JSON API, api-key header)","14 self-catered apartments/chalets + 1 B&B; no catered, no hot tubs"
+village-france-val-d-illiez,allChalets,https://www.allchalets.com/search/location:val-d-illiez,0,0,0,ok,"no Val d Illiez location (Les Crosets exists, separate village)"
+village-france-val-d-illiez,DuckDuckGo html,https://html.duckduckgo.com/html/?q=catered+chalet+Val+d+Illiez,0,0,0,ads only / empty,no local catered operators found; sites.csv has none for Val d Illiez

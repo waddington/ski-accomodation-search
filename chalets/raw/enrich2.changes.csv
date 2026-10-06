@@ -1,0 +1,3 @@
+chalet_id,field,old_value,new_value,source_url,evidence,date
+crystal-hotel-cervino,price_week_20_27_mar_2027;board;hot_tub;available_20_27_mar,;;;unknown,2463 GBP pp HB;half-board;shared;yes,https://www.booking.com/hotel/it/grand-cervino.en-gb.html?checkin=2027-03-20&checkout=2027-03-27&group_adults=2,"Booking.com rates for 1 week, facilities list Hot tub / Spa",2026-10-06
+crystal-hotel-edelweiss,hot_tub;sauna;distance_to_lift_m,;;,shared;yes;300,https://www.booking.com/hotel/it/edelweiss.en-gb.html,"Booking.com description: free sauna and Turkish bath, hot tub available; lifts 300 m",2026-10-06

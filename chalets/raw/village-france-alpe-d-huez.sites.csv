@@ -1,0 +1,8 @@
+collector,site,search_url,listings_found,new_chalets,already_known,access,notes
+village-france-alpe-d-huez,Build My Ski Trip,https://www.buildmyskitrip.com/Hotel/alpedhuez-catered-chalet-Diane,2,2,0,ok (browse.mjs; prices on page),Only Diane + Melusine in AdH
+village-france-alpe-d-huez,SeeAlpedHuez,https://www.seealpedhuez.com/chalets/,36,0,0,"ok (browse.mjs, single page)","36 listings not yet written: Alpe dHuez Rentals (official accommodation.alpedhuez.com), Ski Peak (Vaujany), Fresh Tracks (Oz), Sothebys, Ski France, odalys"
+village-france-alpe-d-huez,Alpe d Huez official booking (accommodation.alpedhuez.com),https://services.msem.tech/api/lodging/resort/125/OT-125?facet=0&language=en,958,0,0,"ok (JSON API, no auth)","958 lodgings; wrote 132 (non-hotel, sleeps 8+ or chalet). Availability: POST services.msem.tech/api/public/lodging/<merchant>/availabilities {start,numberDays,stayDurations:[7]} - works for agency units, empty for MAEVA units"
+village-france-alpe-d-huez,SeeAlpedHuez,https://www.seealpedhuez.com/chalets/,36,19,17,ok (curl),Most entries are OT/Odalys/Ski Peak/Sothebys/Fresh Tracks
+village-france-alpe-d-huez,allChalets,https://www.allchalets.com/search/location:alpe-d-huez,176,84,15,ok,processed 99 (sleeps 8+ or chalet/catered/hot tub in title); 77 small apartments skipped
+village-france-alpe-d-huez,Alpenglow,https://www.alpenglow.ski/alpe-d-huez,0,0,0,domain expired,
+village-france-alpe-d-huez,Altitude Holidays (Zenith),https://altitudeholidays.co.uk/resorts/france/alpe-dhuez,0,0,0,ok,no AdH listings; Zenith site down

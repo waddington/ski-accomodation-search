@@ -1,0 +1,2 @@
+name,url,category,area,notes
+Les Arcs Réservation,https://www.lesarcs-reservation.com/,official,"Les Arcs, Bourg-Saint-Maurice","iResa/Drupal; list pages embed items as escaped HTML (ListItem-content, ListItem-cat = station/area, Capacité max, from-price for 7 nights); filters via /ajax/search/update; station filter ids village-10 Bourg, village-17 Montrigon"

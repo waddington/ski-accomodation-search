@@ -1,0 +1,4 @@
+collector,site,url,chalet_id,problem,missing,tried,date
+village-france-la-daille,allChalets,tools/scrapers/allchalets.py,,other,scraper-mismatch: board=catered-or-self for self-catered apartments; studio sleeps_max blank though Sleeps 4; village HTML-escaped (Val d&#39;Isere); save_images needs separate args,navigate-script,2026-10-06
+village-france-la-daille,YSE,https://www.yseski.co.uk/sitemap.xml,,other,429 rate limit; YSE La Daille list not checked directly,webfetch,2026-10-06
+village-france-la-daille,Val d Isère Réservation,https://booking.valdisere.com/search?mid=3&sans_dates=1,,js-widget,"official booking list for La Daille (Ingenie platform; needs ingenie.py config: host booking.valdisere.com, cid=3, quarter code unknown)",webfetch; browse.mjs,2026-10-06

@@ -1,0 +1,2 @@
+collector,site,url,chalet_id,problem,missing,tried,date
+village-france-val-d-isère,Val d Isère Réservation (ingenie.py valdisere),https://booking.valdisere.com/5-rooms-4-bedrooms-la-tapia.html,,scraper-mismatch,minor: Apartment in a Chalet/House typed as property_type=chalet; rate-plan variants (nuitees/ete/semaine) of the same Jardin Alpin units written as separate rows. Spot-check of La Tapia (hot tub) and Persval: sleeps/hot tub/price OK,browse.mjs spot-check,2026-10-06

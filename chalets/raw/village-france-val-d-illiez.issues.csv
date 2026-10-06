@@ -1,0 +1,2 @@
+collector,site,url,chalet_id,problem,missing,tried,date
+village-france-val-d-illiez,Région Dents du Midi (openbooking),https://api.openbooking.ch/whitelabel/list,,js-widget,exact 20 Mar week price (dated price param not found; availability from /availabilities); Mountain and River units and 1 studio have no price,navigate-script,2026-10-06
