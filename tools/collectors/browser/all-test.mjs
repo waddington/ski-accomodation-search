@@ -1,0 +1,13 @@
+import { chromium } from "playwright";
+const b = await chromium.launch({ headless: true, channel: "chrome" });
+const p = await b.newPage({ viewport: { width: 1300, height: 900 } });
+const errs = []; p.on("pageerror", e => errs.push(e.message)); p.on("crash", () => errs.push("PAGE CRASHED"));
+await p.goto(process.argv[2]); await p.waitForTimeout(3000);
+const t0 = Date.now();
+await p.click('#seg button[data-v="all"]').catch(e => errs.push("click: " + e.message));
+await p.waitForTimeout(5000);
+const n = await p.$$eval(".card", c => c.length).catch(e => "ERR " + e.message);
+const mem = await p.evaluate(() => performance.memory ? Math.round(performance.memory.usedJSHeapSize / 1e6) + " MB" : "?").catch(() => "?");
+console.log("cards:", n, "| heap:", mem, "| ms:", Date.now() - t0, "| errors:", errs);
+await p.screenshot({ path: process.argv[3] });
+await b.close();

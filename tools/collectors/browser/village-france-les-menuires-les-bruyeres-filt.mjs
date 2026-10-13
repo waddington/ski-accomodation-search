@@ -1,0 +1,11 @@
+import { chromium } from "playwright";
+const browser = await chromium.launch({ headless: true, channel: "chrome" });
+const page = await browser.newPage({ locale: "fr-FR", viewport: { width: 1366, height: 900 } });
+page.on("request", r => { const u = r.url(); if (/locationlesmenuires/.test(u) && !/\.(js|css|png|jpg|jpeg|webp|svg|woff2?|gif)/.test(u)) console.error("REQ", r.method(), u.slice(0, 600), (r.postData()||"").slice(0,600)); });
+await page.goto("https://fr.locationlesmenuires.com/appartements-residences-chalets.html", { waitUntil: "networkidle" }).catch(() => {});
+await page.waitForTimeout(3000);
+await page.evaluate(() => { const i=document.querySelector('input[value="IQUART[IBRUYERES[I"]'); i.click(); });
+await page.waitForTimeout(6000);
+console.log("URL", page.url());
+const t = await page.innerText("body"); const m = t.match(/\d+ résultats/); console.log(m && m[0]);
+await browser.close();

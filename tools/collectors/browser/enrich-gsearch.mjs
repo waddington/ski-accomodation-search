@@ -1,0 +1,11 @@
+import { chromium } from "playwright";
+const q = process.argv[2];
+const browser = await chromium.launch({ headless: true, channel: "chrome" });
+const page = await browser.newPage({ locale: "en-GB" });
+await page.goto("https://www.google.com/search?hl=en&q=" + encodeURIComponent(q), { waitUntil: "domcontentloaded" });
+await page.waitForTimeout(2000);
+await page.getByRole("button", { name: /reject all|accept all/i }).first().click().catch(()=>{});
+await page.waitForTimeout(1500);
+const r = await page.$$eval("a h3", hs => hs.map(h => h.closest("a").href + " | " + h.innerText));
+console.log(r.join("\n") || (await page.innerText("body")).slice(0,500));
+await browser.close();

@@ -1,0 +1,16 @@
+import { chromium } from "playwright";
+const S="/tmp/chalet-scratch/village-italy-breuil-cervinia";
+const browser = await chromium.launch({ headless: true, channel: "chrome" });
+const page = await browser.newPage({ locale: "en-GB", viewport: { width: 1366, height: 900 } });
+const reqs=[];
+page.on("response", async r=>{ const u=r.url(); if(/availability|price|search|api/i.test(u) && !/google|cookielaw|datadog|feefo|livechat|stackadapt|scarab|webtrends/.test(u)){ let b=""; try{b=(await r.text()).slice(0,1500)}catch{}; reqs.push({u,s:r.status(),b}); }});
+await page.goto(process.argv[2], { waitUntil: "domcontentloaded" });
+await page.waitForTimeout(3000);
+await page.getByRole("button", { name: /accept/i }).first().click().catch(() => {});
+await page.getByRole("button", { name: /check availability/i }).first().click().catch(e=>console.log("noclick",e.message));
+await page.waitForTimeout(5000);
+await page.screenshot({path:S+"/ing-avail.png"});
+const fs=await import("fs"); fs.writeFileSync(S+"/ing-avail.txt", await page.innerText("body"));
+fs.writeFileSync(S+"/ing-reqs.json", JSON.stringify(reqs,null,1));
+console.log(reqs.map(r=>r.s+" "+r.u).join("\n"));
+await browser.close();

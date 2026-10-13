@@ -1,0 +1,13 @@
+import { chromium } from "playwright";
+const url = process.argv[2];
+const browser = await chromium.launch({ headless: true, channel: "chrome" });
+const page = await browser.newPage({ locale: "fr-FR", viewport: { width: 1366, height: 900 } });
+page.on("request", r => { const u = r.url(); if (/fr\.locationlesmenuires\.com\/(booking|search|ajax)/.test(u)) console.error("REQ", u.slice(0, 700)); });
+await page.goto(url, { waitUntil: "networkidle" }).catch(() => {});
+await page.waitForTimeout(4000);
+const el = await page.$('[id*="dispo"], .disponibilites, #disponibilites');
+const t = await page.innerText("body");
+const i = t.indexOf("Disponibilités & Tarifs");
+console.log(t.slice(i, i + 3000));
+import fs from "fs"; fs.writeFileSync(process.argv[3], await page.content());
+await browser.close();

@@ -1,7 +1,7 @@
 # site-ski-line checkpoint
 
 ## Method (2026-10-06, sites agent #2)
-READY scraper: per resort `/home/kai/.claude/jobs/44718792/tmp/site-ski-line/run.sh "<API resort>" <sitemap-slug>`
+READY scraper: per resort `tools/collectors/skiline/run.sh "<API resort>" <sitemap-slug>`
 = skiline.py (all boards: chalets, apartments, hotels; --sitemap adds sitemap-only chalet/residence pages) -> fix.py
 (maps API resort -> resorts_raw village + ski_area; blanks bedrooms on apartments/hotels; notes residence hot tubs
 as probably shared) -> ingest.py --from-jsonl. Spot-check with chk.sh <url> <name>.

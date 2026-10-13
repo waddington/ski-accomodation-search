@@ -1,0 +1,15 @@
+import { chromium } from "playwright";
+const b = await chromium.launch({ headless: true, channel: "chrome" });
+const p = await b.newPage({ viewport: { width: 1300, height: 900 } });
+const errs = []; p.on("pageerror", e => errs.push(e.message));
+let imgs = 0; p.on("request", r => r.url().includes("/images/") && imgs++);
+await p.goto(process.argv[2]); await p.waitForTimeout(3000);
+const panels = await p.$$eval("section.panel", s => s.filter(x => x.offsetParent !== null).map(x => (x.querySelector("h2")?.textContent || x.textContent).trim().slice(0, 30)));
+imgs = 0; const t0 = Date.now();
+await p.click('#seg button[data-v="all"]'); await p.waitForTimeout(1500);
+const a = await p.$$eval(".card", c => c.length), ms = Date.now() - t0, imgA = imgs;
+await p.evaluate(() => window.scrollTo(0, document.body.scrollHeight)); await p.waitForTimeout(1500);
+const bcount = await p.$$eval(".card", c => c.length);
+console.log("visible panels:", panels, "\nAll: cards", a, "in", ms, "ms; image requests", imgA, "| after scroll:", bcount, "| count text:", await p.textContent("#count"), "| btn:", await p.textContent("#moreWrap"), "| errors:", errs);
+await p.screenshot({ path: process.argv[3] });
+await b.close();

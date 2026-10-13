@@ -7,7 +7,7 @@ Project: `/home/kai/Documents/Misc/ski-chalet-finder`. We are finding every chal
 1. **One thing at a time.** One site, one page, one chalet at a time. No parallel requests, no parallel sub-agents, no background jobs. The user has local LLM limits and sites rate-limit.
 2. **Be polite to sites.** At most 2 requests to the same website at once across ALL agents (user rule); the scrapers enforce this automatically via tools/scrapers/common.py. When browsing by hand, wait ~2 s between page loads on a site. If you get 429/403/captcha: stop that site, log it in issues, move on.
 3. **Write as you go.** Append each chalet the moment it's done; the user watches a live dashboard.
-4. **Only write your own files** (named below). Never use helper scripts in `/tmp` you didn't write; keep scratch files in `/home/kai/.claude/jobs/44718792/tmp/<task_id>/`. Browser scripts go in `tools/scratch/<task_id>-*.mjs`.
+4. **Only write your own files** (named below). Never use helper scripts in `/tmp` you didn't write; keep scratch files in `/tmp/chalet-scratch/<task_id>/`. Browser scripts go in `tools/scratch/<task_id>-*.mjs`.
 5. **Capacity = the operator's stated figure** ("sleeps 6", "6 guests", the guest count prices are quoted for). Never add sofa beds or extra beds to `sleeps_max`; mention them in `notes`.
 6. **Don't guess.** Leave a cell blank if unknown. Record evidence for anything non-obvious in `notes`.
 7. **Don't rely on WebSearch** — its budget is shared and small. Navigate sites directly (their own search, menus, sitemaps, pagination).
@@ -60,8 +60,8 @@ Any site not already in `sites/sites.csv` that you used or discovered: log it to
 
 ## Lanes (parallel agents)
 
-Up to three agents may run at once, one per lane, each doing one thing at a time:
-- **enrich** (phase 1) · **sites** (phases 2–3: site, discover) · **villages** (phase 4, France first) · **villages-abroad** (phase 4, Austria/Italy/Switzerland only).
+Several agents may run at once (keep it to ~4–5 total: more exhausts the Claude usage limit), each doing one thing at a time. Lanes:
+- **enrich** (phase 1) · **sites** (phases 2–3: site, discover) · **villages** (phase 4, French villages, top down) · **villages-fr-rev** (French villages, bottom up) · **villages-abroad** (Austria/Italy/Switzerland; Dolomiti Superski last). Several agents can share a lane: claiming is atomic.
 - Take work only with `python3 tools/queue.py claim --lane=<your lane>` — it atomically marks the task in_progress and prints `task_id, type, target, url, detail`. Never `start` a task you didn't claim. Do ONE claimed task, finish it (`done`/`partial`/`failed`), then return your report.
 - **Villages lane: don't use the big multi-resort sites the sites lane works on** (Sno, Ski Line, Iglu, Heidi, Erna Low, package operators) — stick to the village sources listed under "Village tasks". This keeps the two lanes off the same websites.
 - Sibling villages (e.g. "Les Menuires" vs "Les Menuires: Reberty 2000"): write every chalet you find with its exact village; the sibling task will reuse your chalet_ids from chalets_all.csv rather than redo them.

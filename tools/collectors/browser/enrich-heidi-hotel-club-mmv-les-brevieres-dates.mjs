@@ -1,0 +1,16 @@
+import { chromium } from "playwright";
+import fs from "fs";
+const [qs, out] = process.argv.slice(2);
+const url = "https://www.mmv-holidays.co.uk/destinations/northern-french-alps/tignes/holiday-village-brevieres-winter?" + qs;
+const browser = await chromium.launch({ headless: true, channel: "chrome" });
+const page = await browser.newPage({ locale: "en-GB", viewport: { width: 1366, height: 900 } });
+const reqs = [];
+page.on("response", async r => { if (/mmv-holidays|mmv\.fr\/(api|fr|en)/.test(r.url()) && ["xhr","fetch"].includes(r.request().resourceType())) { let b=""; try{b=(await r.text()).slice(0,400)}catch{}; reqs.push(r.url().slice(0,300)+"\n   "+b.replace(/\s+/g," ")); }});
+await page.goto(url, { waitUntil: "domcontentloaded" });
+await page.waitForTimeout(3000);
+await page.getByRole("button", { name: /accept|accepter/i }).first().click().catch(()=>{});
+await page.waitForTimeout(6000);
+fs.writeFileSync(out + "/dates.txt", await page.innerText("body"));
+await page.screenshot({ path: out + "/dates.png", fullPage: true });
+console.log(reqs.join("\n"));
+await browser.close();

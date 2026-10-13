@@ -8,7 +8,7 @@
 - Price for 20 Mar: POST /Accom/Search (form `asearch`, needs __RequestVerificationToken + cookies) with act=50&duration=7&sharing=N&airport=LGW&boardbasis=..&departureDate=2027-03-20&accomcode=<code>&propertytype=.. -> 302 to ?holidayid=... page with calendar for that sharing/airport.
 - Images: static1.sno.co.uk/images/accom/v0/... = full size (v2 = thumbnails).
 - Operator is NOT named on Sno pages (image path code is 'wlc' for all) -> operator "unknown (sold via Sno)", chalet_id prefix sno-.
-- Scripts: /home/kai/.claude/jobs/44718792/tmp/site-sno/ (snolist.py, snodetail.py, mk.py, one.sh)
+- Scripts: tools/collectors/sno/ (snolist.py, snodetail.py, mk.py, one.sh)
 
 ## Resorts done
 - Espace Killy COMPLETE (espace-killy + tignes + val-d-isere pages; 114 listings; 103 rows written, 11 already known with Sno in listed_on). Todo list: tmp/site-sno/ek_todo.tsv (all 102 done).

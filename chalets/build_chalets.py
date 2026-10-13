@@ -193,7 +193,7 @@ def merge(rows):
             continue
         for k, v in r.items():
             if k in ("listed_on", "found_via"):
-                parts = {p.strip() for p in (cur[k] + ";" + v).split(";") if p.strip()}
+                parts = {p.strip() for p in (cur.get(k, "") + ";" + v).split(";") if p.strip()}
                 cur[k] = "; ".join(sorted(parts))
             elif cur.get(k, "") in ("", "unknown") and v not in ("", "unknown"):
                 cur[k] = v
