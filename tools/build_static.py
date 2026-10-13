@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build a static, shareable snapshot of the dashboard (for GitHub Pages or any static host).
 
-    python3 tools/build_static.py [outdir]        # default: static_site/
+    python3 tools/build_static.py [outdir]        # default: docs/ (served by GitHub Pages)
 
 The output folder is self-contained: index.html at the root plus the CSVs it reads and
 downsized photos. No server needed. To keep it small enough for GitHub Pages (~1 GB limit):
@@ -20,7 +20,7 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "static_site"
+OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "docs"
 THUMB_W, FULL_W, FULL_N = 480, 1000, 5
 
 # Files the page reads, at the same relative paths as under the live server.
@@ -111,6 +111,9 @@ def main():
     (OUT / ".nojekyll").write_text("")  # serve files as-is on GitHub Pages
     size = sum(p.stat().st_size for p in OUT.rglob("*") if p.is_file())
     print(f"{OUT}: {len(rows)} chalets, {shipped} images, {size / 1e6:.0f} MB")
+    # Second pass: redact every field of every shipped CSV (names, emails, phones, API keys).
+    import subprocess
+    subprocess.run([sys.executable, str(ROOT / "tools/redact_static.py"), str(OUT)], check=True)
 
 
 if __name__ == "__main__":

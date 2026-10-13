@@ -1,0 +1,11 @@
+import { chromium } from "playwright";
+const browser = await chromium.launch({ headless: true, channel: "chrome" });
+const page = await browser.newPage({ locale: "en-GB" });
+const api = [];
+page.on("response", async (r) => { const ct = r.headers()["content-type"] || ""; if (ct.includes("json")) { let b=""; try{b=await r.text();}catch{} api.push([r.url(), b.length, b.slice(0,300)]); } });
+await page.goto(process.argv[2], { waitUntil: "networkidle" });
+await page.waitForTimeout(4000);
+const opts = await page.$$eval("select option, [role=option], li", (os) => os.map((o) => o.textContent.trim()).filter((t) => /plagne|coches|montchavin|paradis/i.test(t)).slice(0, 40));
+console.log("OPTS", JSON.stringify(opts));
+for (const a of api) console.log("API", a[0], a[1], a[2].replace(/\n/g, " "));
+await browser.close();

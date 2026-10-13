@@ -1,0 +1,15 @@
+import { chromium } from "playwright";
+const browser = await chromium.launch({ headless: true, channel: "chrome" });
+const page = await browser.newPage({ locale: "en-GB", viewport: { width: 1366, height: 900 } });
+page.on("request", r => { const u=r.url(); if (/igluski\.com/.test(u) && !/\.(png|jpg|svg|css|woff2?|js)(\?|$)/.test(u) && !/content\.igluski/.test(u)) console.log("REQ", r.method(), u, (r.postData()||"").slice(0,300)); });
+await page.goto("https://www.igluski.com/ski-holidays/meribel-ski-chalets", { waitUntil: "domcontentloaded" });
+await page.waitForTimeout(4000);
+await page.getByRole("button", { name: /accept/i }).first().click().catch(() => {});
+console.log("URL1", page.url());
+const l = page.locator("a[href*='page=2']").first();
+await l.click().catch(e=>console.log("clickerr",e.message));
+await page.waitForTimeout(6000);
+console.log("URL2", page.url());
+const t = await page.$$eval(".search-result__title", els=>els.map(e=>e.textContent.trim()));
+console.log(t);
+await browser.close();
